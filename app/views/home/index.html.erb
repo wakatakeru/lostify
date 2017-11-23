@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>Dashboard</h1>
+  <hr>
+  <%= link_to '新規に物品を登録する', new_property_path, class: 'btn btn-primary btn-block'%>
+  <hr>
+  <% if !@losts.empty? %>
+  <span style="color:red"><h2>紛失が報告されている物品</h2></span>
+    <table class="table">
+      <tr>
+        <td>物品名</td>
+      </tr>
+      <% @losts.each do |l| %>
+      <tr>
+        <td><%= link_to l.name, property_path(l.id) %></td>
+      </tr>
+      <% end %>
+    </table>
+  <hr>
+  <% end %>
+  <h2>紛失報告のない物品</h2>
+  <table class="table">
+    <tr>
+      <td>物品名</td>
+      <td>削除</td>
+    </tr>
+    <% @possesions.each do |p| %>
+    <tr>
+      <td>
+        <%= link_to p.name, property_path(p.id) %>
+      </td>
+      <td>
+        <%= link_to '削除', property_path(p.id), method: 'delete', class: 'btn btn-danger btn-xs'%>
+      </td>
+    </tr>
+    <% end %>
+  </table>
+</div>
