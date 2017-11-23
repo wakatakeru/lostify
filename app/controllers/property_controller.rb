@@ -5,6 +5,12 @@ class PropertyController < ApplicationController
     @property = Property.find(params['id'])
   end
 
+  def download
+    property = Property.find(params['id'])
+    qrcode = CreateQRCode::get_image(request, property.token)
+    send_data(qrcode, type: 'image/png')
+  end
+  
   def new
     @property = Property.new
   end

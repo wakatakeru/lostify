@@ -8,4 +8,6 @@
   <% else %>
     紛失報告はありません
   <% end %>
+  <hr>
+  <%= link_to 'QRコードをダウンロード', download_property_path(@property.id), class: 'btn btn-success btn-block'%>
 </div>

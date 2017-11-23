@@ -66,3 +66,8 @@ gem 'twitter-bootstrap-rails'
 
 # Devise
 gem 'devise'
+
+# QRCode
+gem 'barby'
+gem 'rqrcode'
+gem 'chunky_png'
