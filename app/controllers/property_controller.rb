@@ -3,6 +3,8 @@ class PropertyController < ApplicationController
   
   def show
     @property = Property.find(params['id'])
+
+    check_user(@property.user)
     
     if @property.is_lost
       @lost = Lost.find(@property.lost_id)
@@ -11,6 +13,9 @@ class PropertyController < ApplicationController
 
   def download
     property = Property.find(params['id'])
+
+    check_user(property.user)
+
     qrcode = CreateQRCode::get_image(request, property.token)
     send_data(qrcode, type: 'image/png')
   end
@@ -38,11 +43,15 @@ class PropertyController < ApplicationController
 
   def edit
     @property = Property.find(params['id'])
+
+    check_user(@property.user)
   end
 
   def update
     property = Property.find(params['id'])
 
+    check_user(property.user)
+    
     property.name = params['property']['name']
     property.user_id = current_user.id
 
@@ -57,6 +66,8 @@ class PropertyController < ApplicationController
 
   def destroy
     property = Property.find(params['id'])
+
+    check_user(property.user)
     
     if property.destroy
       flash[:success] = '物品を削除しました'
@@ -79,6 +90,15 @@ class PropertyController < ApplicationController
       redirect_to home_index_path
     else
       flash[:danger] = '登録を削除できません。管理者にお問い合わせください'
+      redirect_to home_index_path
+    end
+  end
+
+  private
+
+  def check_user(user)
+    if user != current_user
+      flash[:danger] = '権限の無い操作です'
       redirect_to home_index_path
     end
   end
