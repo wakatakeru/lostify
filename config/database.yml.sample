@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encording: utf-8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: YOUR_USER_NAME
+  host: YOUR_HOST
+
+development:
+  <<: *default
+  database: lostify_development
+
+test:
+  <<: *default
+  database: lostify_test
+
+production:
+  <<: *default
+  database: lostify_production
