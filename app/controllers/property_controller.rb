@@ -3,6 +3,10 @@ class PropertyController < ApplicationController
   
   def show
     @property = Property.find(params['id'])
+    
+    if @property.is_lost
+      @lost = Lost.find(@property.lost_id)
+    end
   end
 
   def download
@@ -59,6 +63,22 @@ class PropertyController < ApplicationController
       redirect_to home_index_path
     else
       flash[:danger] = '物品を削除できません。管理者にお問い合わせください'
+      redirect_to home_index_path
+    end
+  end
+
+  def destroy_reporting
+    property = Property.find(params['id'])
+    lost = Lost.find(property.lost_id)
+
+    property.lost_id = nil
+    property.is_lost = false
+    
+    if lost.destroy && property.save
+      flash[:success] = '物品の受取を登録しました'
+      redirect_to home_index_path
+    else
+      flash[:danger] = '登録を削除できません。管理者にお問い合わせください'
       redirect_to home_index_path
     end
   end

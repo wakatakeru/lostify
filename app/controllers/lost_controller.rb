@@ -9,14 +9,9 @@ class LostController < ApplicationController
 
   def create
     @lost = Lost.new
-
     token = params['token']
     
     property = Property.where(token: token).first
-    property.is_lost = true
-
-    # TODO: エラーハンドリング
-    property.save
 
     @lost.current_location = params['lost']['current_location']
     @lost.pickup_location = params['lost']['pickup_location']
@@ -24,6 +19,12 @@ class LostController < ApplicationController
 
     # TODO: エラーハンドリング
     @lost.save
+
+    property.is_lost = true
+    property.lost_id = @lost.id
+    
+    # TODO: エラーハンドリング
+    property.save
     redirect_to lost_index_path
   end
 end

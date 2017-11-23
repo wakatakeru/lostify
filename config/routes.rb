@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :property do
     get 'download', on: :member
+    get 'destroy_reporting', on: :member
   end
 
   resources :lost
