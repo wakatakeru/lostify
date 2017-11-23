@@ -63,3 +63,6 @@ gem 'sidekiq'
 gem 'therubyracer'
 gem 'less-rails', git: 'https://github.com/MustafaZain/less-rails'
 gem 'twitter-bootstrap-rails'
+
+# Devise
+gem 'devise'
