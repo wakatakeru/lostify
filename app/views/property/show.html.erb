@@ -4,10 +4,25 @@
   <%= link_to '物品名を変更する', edit_property_path(@property.id), class: 'btn btn-primary btn-block'%>
   <hr>
   <% if @property.is_lost %>
+  <h3 align="center">
     <span style="color:red">紛失報告があります</span>
+  </h3>
+    <table class="table">
+      <tr>
+        <td><b>現在届けられている場所<b></td>
+        <td><%= @lost.current_location %></td>
+      </tr>
+      <tr>
+        <td><b>拾得された場所</b></td>
+        <td><%= @lost.pickup_location %></td>
+      </tr>
+    </table>
   <% else %>
     紛失報告はありません
   <% end %>
   <hr>
   <%= link_to 'QRコードをダウンロード', download_property_path(@property.id), class: 'btn btn-success btn-block'%>
+  <% if @property.is_lost %>
+    <%= link_to '紛失物の受取登録', destroy_reporting_property_path(@property.id), class: 'btn btn-warning btn-block'%>
+  <% end %>
 </div>

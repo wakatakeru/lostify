@@ -1,0 +1,22 @@
+<div class="container">
+  <h2 align="center">拾得物の返還にご協力いただきありがとうございます</h2>
+  <h3 align="center">持ち主に返還するため、以下のフォームにご回答ください</h3>
+  <hr>
+  <div class="col-xs-0  col-sm-2"></div>
+  <div class="col-xs-12 col-sm-8">
+    <%= form_for @lost, url: {action: 'create'}, class: 'form-group' do |f| %>
+    <div class="form-group">
+      <%= f.label 'この拾得物は、どこで拾われましたか？' %>
+      <%= f.text_field :pickup_location, class: 'form-control'%>
+    </div>
+    <div class="form-group">
+      <%= f.label '拾得後、どこにお届けいただきましたか？' %>
+      <%= f.text_field :current_location, class: 'form-control'%>
+    </div>
+    <%= f.hidden_field_tag :token, @token %>
+    <div class="form-group">
+      <%= f.submit '確定', class: 'btn btn-primary'%>
+    </div>
+    <% end %>
+  </div>
+</div>
