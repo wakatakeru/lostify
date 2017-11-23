@@ -71,3 +71,7 @@ gem 'devise'
 gem 'barby'
 gem 'rqrcode'
 gem 'chunky_png'
+
+# For sidekiq
+gem 'slim'
+gem 'sinatra', '>= 1.3.0', :require => nil

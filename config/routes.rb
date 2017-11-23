@@ -1,4 +1,7 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
+
   root to: 'home#index'
 
   get 'home/index'
@@ -10,5 +13,10 @@ Rails.application.routes.draw do
 
   resources :lost
 
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    username == 'hoge' && password == 'hogehoge'
+  end
+  mount Sidekiq::Web => '/sidekiq'
+  
   devise_for :users
 end
