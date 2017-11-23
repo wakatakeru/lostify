@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  token: MyString
+  is_lost: false
+  lost_id: 1
+  lost_id: 1
+
+two:
+  name: MyString
+  token: MyString
+  is_lost: false
+  lost_id: 1
+  lost_id: 1
