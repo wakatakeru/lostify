@@ -1,0 +1,16 @@
+<div class="container">
+  <h2>物品情報の変更</h2>
+  <hr>
+  <div class="col-xs-0  col-sm-2"></div>
+  <div class="col-xs-12 col-sm-8">
+    <%= form_for @property, url: {action: 'update'}, class: 'form-group' do |f| %>
+    <div class="form-group">
+      <%= f.label '物品名' %>
+      <%= f.text_field :name, class: 'form-control'%>
+    </div>
+    <div class="form-group">
+      <%= f.submit '登録', class: 'btn btn-primary'%>
+    </div>
+    <% end %>
+  </div>
+</div>

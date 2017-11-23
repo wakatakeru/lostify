@@ -1,0 +1,11 @@
+<div class="container">
+  <h2><%= @property.name %></h2>
+  <hr>
+  <%= link_to '物品名を変更する', edit_property_path(@property.id), class: 'btn btn-primary btn-block'%>
+  <hr>
+  <% if @property.is_lost %>
+    <span style="color:red">紛失報告があります</span>
+  <% else %>
+    紛失報告はありません
+  <% end %>
+</div>
