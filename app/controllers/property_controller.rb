@@ -84,6 +84,7 @@ class PropertyController < ApplicationController
 
     property.lost_id = nil
     property.is_lost = false
+    property.token = SecureRandom.hex(30)    # 一回拾得報告されたらQRコードを更新
     
     if lost.destroy && property.save
       flash[:success] = '物品の受取を登録しました'

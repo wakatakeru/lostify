@@ -21,8 +21,9 @@
     紛失報告はありません
   <% end %>
   <hr>
-  <%= link_to 'QRコードをダウンロード', download_property_path(@property.id), class: 'btn btn-success btn-block'%>
   <% if @property.is_lost %>
     <%= link_to '紛失物の受取登録', destroy_reporting_property_path(@property.id), class: 'btn btn-warning btn-block'%>
+  <% else %>
+    <%= link_to 'QRコードをダウンロード', download_property_path(@property.id), class: 'btn btn-success btn-block'%>
   <% end %>
 </div>
