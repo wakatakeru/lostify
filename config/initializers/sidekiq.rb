@@ -1,3 +1,4 @@
 Sidekiq.configure_server do |config|
-  config.redis = { url: 'redis://localhost:6379' }
+  config.redis = { url: "redis://#{ENV['REDIS_HOST']}" }
+  puts ENV['REDIS_HOST']
 end

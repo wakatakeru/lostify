@@ -33,8 +33,13 @@ class LostController < ApplicationController
       pickup_loc = @lost.pickup_location
       property.save
 
-      #ReportingMailer.report_email(user, property, @lost).deliver
-      ReportingWorker.perform_async(user_email, property_name, current_loc, pickup_loc)
+      ReportingMailer.report_email(
+        user_email,
+        property_name,
+        current_loc,
+        pickup_loc
+      ).deliver!
+      #ReportingWorker.perform_async(user_email, property_name, current_loc, pickup_loc)
       
       redirect_to lost_index_path
     end
